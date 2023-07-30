@@ -1,0 +1,18 @@
+@import '../../../assets/nullstyle';
+@import '../../../assets/variables';
+
+.wrapper {
+	background-color: $backKanbanBlueLight;
+}
+
+.task_body {
+	background-color: $colorWhite;
+	margin: 20px 25px;
+	border-radius: 5px;
+	padding: 20px 25px;
+}
+
+h2 {
+	font-size: $fz-headerTask;
+	margin-bottom: 35px;
+}

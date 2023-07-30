@@ -1,0 +1,32 @@
+@import '../../assets/nullstyle';
+@import '../../assets/variables';
+
+.blockTask {
+	background-color: $backGreyTask;
+	padding: 12px;
+	border-radius: 10px;
+
+	& h2 {
+		margin-bottom: 15px;
+	}
+}
+
+a {
+	color: $colorBlack;
+}
+
+.title_task {
+	padding: 7px;
+	background-color: $colorWhite;
+	margin-bottom: 15px;
+	border-radius: 5px;
+}
+
+.plus {
+	width: 16px;
+	height: 16px;
+}
+
+.input {
+	margin-bottom: 20px;
+}

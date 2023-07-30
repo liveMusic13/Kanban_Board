@@ -1,0 +1,17 @@
+@import '../../assets/nullstyle';
+@import '../../assets/variables';
+
+.wrapper {
+	background-color: $backKanbanBlueDark;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 55px;
+	padding: 7px 15px;
+	color: $colorWhite;
+
+	& .block_task {
+		display: flex;
+		gap: 35px;
+	}
+}

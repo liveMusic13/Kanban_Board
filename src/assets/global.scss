@@ -1,0 +1,13 @@
+@import './variables';
+@import './nullstyle';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: $fz-basic;
+	line-height: calc(21 / 18);
+	color: $colorBlack;
+	max-width: 1265px;
+	padding: 0px 15px;
+	background-color: $backKanbanBlueLight;
+}

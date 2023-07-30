@@ -1,0 +1,56 @@
+@import '../../assets/nullstyle';
+@import '../../assets/variables';
+
+.wrapper {
+	background-color: $backKanbanBlueDark;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 55px;
+	padding: 7px 15px;
+	color: $colorWhite;
+
+	& h1 {
+		font-size: $fz-header;
+	}
+
+	& .block__image {
+		display: flex;
+		gap: 5px;
+		position: relative;
+		cursor: pointer;
+
+		& div {
+			background-color: $colorWhite;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		& .menu {
+			position: absolute;
+			top: 40px;
+			left: -63px;
+			font-size: $fz-menu;
+			width: 135px;
+			height: 60px;
+			background-color: $colorWhite;
+			color: $colorBlack;
+			margin-top: 10px;
+			border-radius: 5px;
+			padding: 8px;
+
+			& > li {
+				margin-bottom: 8px;
+
+				&:hover {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}

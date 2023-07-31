@@ -8,8 +8,8 @@ const Footer = () => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.block_task}>
-				<p>Active tasks: {arrayTask[0].length}</p>
-				<p>Finished tasks: {arrayTask[3].length}</p>
+				<p>Active tasks: {arrayTask.backlog.length}</p>
+				<p>Finished tasks: {arrayTask.finished.length}</p>
 			</div>
 			<p>Kanban board by Dmitriy, 27 year</p>
 		</div>

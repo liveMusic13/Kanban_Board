@@ -1,4 +1,5 @@
 import BlockTask from '../../block-task/BlockTask';
+import Footer from '../../footer/Footer';
 import Header from '../../header/Header';
 import WorkingSpace from '../../working-space/WorkingSpace';
 
@@ -34,7 +35,7 @@ const Home = () => {
 					);
 				})}
 			</WorkingSpace>
-			{/* <Footer /> */}
+			<Footer />
 		</div>
 	);
 };

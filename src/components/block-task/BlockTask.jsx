@@ -102,7 +102,6 @@ const BlockTask = ({ children, numberBlockTask }) => {
 					{veiwMenu ? (
 						<MenuTask
 							numberBlockTask={numberBlockTask}
-							moveTaskToReady={moveTaskToReady}
 							veiwMenu={veiwMenu}
 							setVeiwMenu={setVeiwMenu}
 						/>

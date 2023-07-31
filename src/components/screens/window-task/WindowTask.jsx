@@ -4,6 +4,7 @@ import {
 	numberWindowBlockTaskContext,
 	numberWindowTaskContext,
 } from '../../Context';
+import Footer from '../../footer/Footer';
 import Header from '../../header/Header';
 import styles from './WindowTask.module.scss';
 
@@ -49,8 +50,6 @@ const WindowTask = () => {
 		});
 		return foundDescription;
 	};
-	console.log(titleTask(arrayTask[numberTaskForMap]));
-	console.log(descriptionTask(arrayTask[numberTaskForMap]));
 
 	return (
 		<div className={styles.wrapper}>
@@ -63,7 +62,7 @@ const WindowTask = () => {
 				<h2>{titleTask(arrayTask[numberTaskForMap])}</h2>
 				<p>{descriptionTask(arrayTask[numberTaskForMap])}</p>
 			</div>
-			{/* <Footer /> */}
+			<Footer />
 		</div>
 	);
 };

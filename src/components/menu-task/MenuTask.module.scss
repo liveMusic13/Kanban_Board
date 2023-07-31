@@ -1,0 +1,23 @@
+@import '../../assets/nullstyle';
+@import '../../assets/variables';
+
+.menu {
+	position: absolute;
+	top: 130px;
+	left: 0;
+	background-color: $colorWhite;
+	max-width: 243px;
+	margin-left: 12px;
+	margin-right: 12px;
+	border-radius: 5px;
+
+	& > li {
+		padding: 8px;
+		border-radius: 5px;
+
+		&:hover {
+			cursor: pointer;
+			background-color: $backGreyTask;
+		}
+	}
+}

@@ -2,9 +2,11 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	arrayTaskContext,
+	generateIdContext,
 	numberWindowBlockTaskContext,
 	numberWindowTaskContext,
 } from '../Context';
+import MenuTask from '../menu-task/MenuTask';
 import Button from '../ui/button/Button';
 import Input from '../ui/input/Input';
 import styles from './BlockTask.module.scss';
@@ -18,22 +20,35 @@ const BlockTask = ({ children, numberBlockTask }) => {
 		numberWindowBlockTaskContext
 	);
 
+	const generateId = useContext(generateIdContext);
+	const numberTaskForMap =
+		numberBlockTask === 0
+			? 'backlog'
+			: numberBlockTask === 1
+			? 'ready'
+			: numberBlockTask === 2
+			? 'inProgress'
+			: numberBlockTask === 3
+			? 'finished'
+			: null;
+
 	const [veiwInput, setVeiwInput] = useState(false);
 	const [valueInput, setValueInput] = useState('');
-
-	console.log('Before updating arrayTask:', arrayTask);
+	const [veiwMenu, setVeiwMenu] = useState(false);
 
 	const addNewTask = () => {
-		// e.preventDefault();
-
 		const newTask = {
-			id: arrayTask[0].length + 1,
+			id: Date.now(),
 			title: valueInput,
 			descriptions: 'This task has no description',
 		};
 
-		setArrayTask(arrayTask[0].push(newTask));
-		console.log('After updating arrayTask:', arrayTask);
+		if (valueInput === '') {
+			return <></>;
+		} else {
+			setArrayTask({ ...arrayTask, backlog: [...arrayTask.backlog, newTask] });
+		}
+
 		setValueInput('');
 	};
 
@@ -41,17 +56,17 @@ const BlockTask = ({ children, numberBlockTask }) => {
 		<div className={styles.blockTask}>
 			<h2>{children}</h2>
 			<div>
-				{arrayTask[numberBlockTask].map(task => {
+				{arrayTask[numberTaskForMap].map(task => {
 					return (
 						<Link
 							onClick={() => {
-								setNumberWindowTask(task.id - 1);
+								setNumberWindowTask(task.id);
 								setNumberWindowBlockTask(numberBlockTask);
 							}}
 							to={'./windowTask'}
-							key={task.id + 1}
+							key={generateId()}
 						>
-							<p className={styles.title_task} key={task.id}>
+							<p className={styles.title_task} key={generateId()}>
 								{task.title}
 							</p>
 						</Link>
@@ -74,11 +89,27 @@ const BlockTask = ({ children, numberBlockTask }) => {
 					</Button>
 				</>
 			) : (
-				<>
-					<Button setVeiwInput={setVeiwInput} veiwInput={veiwInput}>
+				<div className={styles.block_button_menu}>
+					<Button
+						setVeiwInput={setVeiwInput}
+						veiwInput={veiwInput}
+						numberBlockTask={numberBlockTask}
+						veiwMenu={veiwMenu}
+						setVeiwMenu={setVeiwMenu}
+					>
 						<img className={styles.plus} src='./plus.svg' alt='plus' /> Add card
 					</Button>
-				</>
+					{veiwMenu ? (
+						<MenuTask
+							numberBlockTask={numberBlockTask}
+							moveTaskToReady={moveTaskToReady}
+							veiwMenu={veiwMenu}
+							setVeiwMenu={setVeiwMenu}
+						/>
+					) : (
+						<></>
+					)}
+				</div>
 			)}
 		</div>
 	);

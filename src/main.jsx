@@ -3,48 +3,53 @@ import ReactDOM from 'react-dom/client';
 import './assets/global.scss';
 import {
 	arrayTaskContext,
+	generateIdContext,
 	numberWindowBlockTaskContext,
 	numberWindowTaskContext,
 } from './components/Context';
 import Router from './components/Router';
 
 const Main = () => {
-	const [arrayTask, setArrayTask] = useState([
-		[
+	const generateId = () => {
+		return Math.random() + Math.random();
+	};
+
+	const [arrayTask, setArrayTask] = useState({
+		backlog: [
 			{
-				id: 1,
+				id: generateId(),
 				title: 'Login page – performance issues',
 				descriptions: 'loremsfsa hjsafbhaflbashl fhdslfbshlf fbhlfbaf',
 			},
 			{
-				id: 2,
+				id: generateId(),
 				title: 'Sprint bugfix',
 				descriptions: 'loremsffhdslfbshlf fbhlfbaf',
 			},
 		],
-		[
+		ready: [
 			{
-				id: 1,
+				id: generateId(),
 				title: 'bugfix',
 				descriptions: 'loremsffhdslfbfbhlfbaf',
 			},
 		],
-		[
+		inProgress: [
 			{
-				id: 1,
+				id: generateId(),
 				title: 'Sprint',
 				descriptions:
 					'loremsffhdslfbshlf dssssssssssssssssssssssssssss fbhlfbaf',
 			},
 		],
-		[
+		finished: [
 			{
-				id: 1,
+				id: generateId(),
 				title: 'End',
 				descriptions: 'ldsffffhlokoHHHHHHHHHHHHHHhh',
 			},
 		],
-	]);
+	});
 
 	localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
 	// setArrayTask(localStorage.getItem('arrayTask'));
@@ -54,17 +59,19 @@ const Main = () => {
 
 	return (
 		<div>
-			<arrayTaskContext.Provider value={{ arrayTask, setArrayTask }}>
-				<numberWindowTaskContext.Provider
-					value={{ numberWindowTask, setNumberWindowTask }}
-				>
-					<numberWindowBlockTaskContext.Provider
-						value={{ numberWindowBlockTask, setNumberWindowBlockTask }}
+			<generateIdContext.Provider value={generateId}>
+				<arrayTaskContext.Provider value={{ arrayTask, setArrayTask }}>
+					<numberWindowTaskContext.Provider
+						value={{ numberWindowTask, setNumberWindowTask }}
 					>
-						<Router />
-					</numberWindowBlockTaskContext.Provider>
-				</numberWindowTaskContext.Provider>
-			</arrayTaskContext.Provider>
+						<numberWindowBlockTaskContext.Provider
+							value={{ numberWindowBlockTask, setNumberWindowBlockTask }}
+						>
+							<Router />
+						</numberWindowBlockTaskContext.Provider>
+					</numberWindowTaskContext.Provider>
+				</arrayTaskContext.Provider>
+			</generateIdContext.Provider>
 		</div>
 	);
 };

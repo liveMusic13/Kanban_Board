@@ -5,8 +5,6 @@ import styles from './Footer.module.scss';
 const Footer = () => {
 	const { arrayTask, setArrayTask } = useContext(arrayTaskContext);
 
-	console.log(arrayTask[0].length);
-
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.block_task}>

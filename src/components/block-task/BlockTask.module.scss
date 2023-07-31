@@ -5,6 +5,7 @@
 	background-color: $backGreyTask;
 	padding: 12px;
 	border-radius: 10px;
+	position: relative;
 
 	& h2 {
 		margin-bottom: 15px;
@@ -30,3 +31,7 @@ a {
 .input {
 	margin-bottom: 20px;
 }
+
+// .block_button_menu {
+// 	position: relative;
+// }

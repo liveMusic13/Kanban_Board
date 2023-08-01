@@ -86,6 +86,7 @@ const WindowTask = () => {
 								inputDescription={true}
 								titleId={titleId}
 								valueInput={valueInput}
+								setValueInput={setValueInput}
 								numberTaskForMap={numberTaskForMap}
 							>
 								Add Task

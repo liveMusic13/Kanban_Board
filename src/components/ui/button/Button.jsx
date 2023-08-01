@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { arrayTaskContext } from '../../Context';
+import { arrayTaskContext, valueInputContext } from '../../Context';
 import styles from './Button.module.scss';
 
 const Button = ({
@@ -13,13 +13,19 @@ const Button = ({
 	inputDescription,
 	titleId,
 	numberTaskForMap,
-	valueInput,
 }) => {
 	let { arrayTask, setArrayTask } = useContext(arrayTaskContext);
+	let { valueInput, setValueInput } = useContext(valueInputContext);
 
 	const buttonBacklog = () => {
 		return (
-			<button className={styles.buttonAdd} onClick={() => setVeiwInput(true)}>
+			<button
+				className={styles.buttonAdd}
+				onClick={() => {
+					setValueInput('');
+					setVeiwInput(true);
+				}}
+			>
 				{children}
 			</button>
 		);

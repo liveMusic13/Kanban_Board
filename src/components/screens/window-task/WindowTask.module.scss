@@ -10,6 +10,48 @@
 	margin: 20px 25px;
 	border-radius: 5px;
 	padding: 20px 25px;
+	display: flex;
+	justify-content: space-between;
+
+	& textarea {
+		font-size: $fz-basic;
+		width: 45em;
+	}
+
+	& > .block_content {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	& .block_cross {
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		position: relative;
+
+		& .cross1 {
+			width: 1px;
+			height: 35px;
+			background-color: $colorBlack;
+			z-index: 9999;
+			position: absolute;
+			top: -2px;
+			left: 15px;
+			transform: rotate(-135deg);
+		}
+
+		& .cross2 {
+			width: 1px;
+			height: 35px;
+			background-color: $colorBlack;
+			z-index: 9999;
+			position: absolute;
+			top: -2px;
+			right: 15px;
+			transform: rotate(-45deg);
+		}
+	}
 }
 
 h2 {

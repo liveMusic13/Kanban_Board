@@ -7,3 +7,5 @@ export const numberWindowBlockTaskContext = React.createContext();
 export const numberWindowTaskContext = React.createContext();
 
 export const generateIdContext = React.createContext();
+
+export const valueInputContext = React.createContext();

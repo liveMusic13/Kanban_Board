@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { valueInputContext } from '../../Context';
 import styles from './Input.module.scss';
 
-const Input = ({ valueInput, setValueInput }) => {
+const Input = () => {
+	let { valueInput, setValueInput } = useContext(valueInputContext);
+
 	return (
 		<div>
 			<input

@@ -6,6 +6,7 @@ import {
 	generateIdContext,
 	numberWindowBlockTaskContext,
 	numberWindowTaskContext,
+	valueInputContext,
 } from './components/Context';
 import Router from './components/Router';
 
@@ -51,27 +52,29 @@ const Main = () => {
 		],
 	});
 
-	localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
-	// setArrayTask(localStorage.getItem('arrayTask'));
-
 	const [numberWindowTask, setNumberWindowTask] = useState(null);
 	const [numberWindowBlockTask, setNumberWindowBlockTask] = useState(null);
+	const [valueInput, setValueInput] = useState('');
+
+	// setArrayTask(localStorage.getItem('arrayTask'));
 
 	return (
 		<div>
-			<generateIdContext.Provider value={generateId}>
-				<arrayTaskContext.Provider value={{ arrayTask, setArrayTask }}>
-					<numberWindowTaskContext.Provider
-						value={{ numberWindowTask, setNumberWindowTask }}
-					>
-						<numberWindowBlockTaskContext.Provider
-							value={{ numberWindowBlockTask, setNumberWindowBlockTask }}
+			<valueInputContext.Provider value={{ valueInput, setValueInput }}>
+				<generateIdContext.Provider value={generateId}>
+					<arrayTaskContext.Provider value={{ arrayTask, setArrayTask }}>
+						<numberWindowTaskContext.Provider
+							value={{ numberWindowTask, setNumberWindowTask }}
 						>
-							<Router />
-						</numberWindowBlockTaskContext.Provider>
-					</numberWindowTaskContext.Provider>
-				</arrayTaskContext.Provider>
-			</generateIdContext.Provider>
+							<numberWindowBlockTaskContext.Provider
+								value={{ numberWindowBlockTask, setNumberWindowBlockTask }}
+							>
+								<Router />
+							</numberWindowBlockTaskContext.Provider>
+						</numberWindowTaskContext.Provider>
+					</arrayTaskContext.Provider>
+				</generateIdContext.Provider>
+			</valueInputContext.Provider>
 		</div>
 	);
 };

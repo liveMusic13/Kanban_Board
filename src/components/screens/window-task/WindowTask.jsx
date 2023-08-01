@@ -1,11 +1,14 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
 	arrayTaskContext,
 	numberWindowBlockTaskContext,
 	numberWindowTaskContext,
+	valueInputContext,
 } from '../../Context';
 import Footer from '../../footer/Footer';
 import Header from '../../header/Header';
+import Button from '../../ui/button/Button';
 import styles from './WindowTask.module.scss';
 
 const WindowTask = () => {
@@ -16,6 +19,7 @@ const WindowTask = () => {
 		numberWindowBlockTaskContext
 	);
 	let { arrayTask, setArrayTask } = useContext(arrayTaskContext);
+	let { valueInput, setValueInput } = useContext(valueInputContext);
 
 	const numberTaskForMap =
 		numberWindowBlockTask === 0
@@ -27,6 +31,18 @@ const WindowTask = () => {
 			: numberWindowBlockTask === 3
 			? 'finished'
 			: null;
+
+	const titleId = arr => {
+		let foundId = null;
+
+		arr.forEach(objTask => {
+			if (objTask.id === numberWindowTask) {
+				foundId = objTask.id;
+			}
+		});
+
+		return foundId;
+	};
 
 	const titleTask = arr => {
 		let foundTitle = null;
@@ -51,16 +67,45 @@ const WindowTask = () => {
 		return foundDescription;
 	};
 
+	const navigate = useNavigate();
+	const [veiwTextarea, setVeiwTextarea] = useState(false);
+
 	return (
 		<div className={styles.wrapper}>
 			<Header>Awesome Kanban Board</Header>
 			<div className={styles.task_body}>
-				<div>
-					<div></div>
-					<div></div>
+				<div className={styles.block_content}>
+					<h2>{titleTask(arrayTask[numberTaskForMap])}</h2>
+					{veiwTextarea ? (
+						<>
+							<textarea
+								value={valueInput}
+								onChange={event => setValueInput(event.target.value)}
+							></textarea>
+							<Button
+								inputDescription={true}
+								titleId={titleId}
+								valueInput={valueInput}
+								numberTaskForMap={numberTaskForMap}
+							>
+								Add Task
+							</Button>
+						</>
+					) : (
+						<p
+							onClick={() => {
+								setValueInput(descriptionTask(arrayTask[numberTaskForMap]));
+								setVeiwTextarea(!veiwTextarea);
+							}}
+						>
+							{descriptionTask(arrayTask[numberTaskForMap])}
+						</p>
+					)}
 				</div>
-				<h2>{titleTask(arrayTask[numberTaskForMap])}</h2>
-				<p>{descriptionTask(arrayTask[numberTaskForMap])}</p>
+				<div className={styles.block_cross} onClick={() => navigate('/')}>
+					<div className={styles.cross1}></div>
+					<div className={styles.cross2}></div>
+				</div>
 			</div>
 			<Footer />
 		</div>

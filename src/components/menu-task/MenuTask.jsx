@@ -52,6 +52,7 @@ const MenuTask = ({ numberBlockTask, veiwMenu, setVeiwMenu }) => {
 								}));
 
 								setVeiwMenu(!veiwMenu);
+								localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
 							}}
 						>
 							{taskBacklog.title}

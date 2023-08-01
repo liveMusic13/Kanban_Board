@@ -5,6 +5,7 @@ import {
 	generateIdContext,
 	numberWindowBlockTaskContext,
 	numberWindowTaskContext,
+	valueInputContext,
 } from '../Context';
 import MenuTask from '../menu-task/MenuTask';
 import Button from '../ui/button/Button';
@@ -19,6 +20,7 @@ const BlockTask = ({ children, numberBlockTask }) => {
 	let { numberWindowBlockTask, setNumberWindowBlockTask } = useContext(
 		numberWindowBlockTaskContext
 	);
+	let { valueInput, setValueInput } = useContext(valueInputContext);
 
 	const generateId = useContext(generateIdContext);
 	const numberTaskForMap =
@@ -33,7 +35,6 @@ const BlockTask = ({ children, numberBlockTask }) => {
 			: null;
 
 	const [veiwInput, setVeiwInput] = useState(false);
-	const [valueInput, setValueInput] = useState('');
 	const [veiwMenu, setVeiwMenu] = useState(false);
 
 	const addNewTask = () => {
@@ -75,11 +76,7 @@ const BlockTask = ({ children, numberBlockTask }) => {
 			</div>
 			{veiwInput ? (
 				<>
-					<Input
-						className={styles.input}
-						valueInput={valueInput}
-						setValueInput={setValueInput}
-					/>
+					<Input className={styles.input} />
 					<Button
 						setVeiwInput={setVeiwInput}
 						veiwInput={veiwInput}

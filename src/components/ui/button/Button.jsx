@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { arrayTaskContext } from '../../Context';
 import styles from './Button.module.scss';
 
 const Button = ({
@@ -8,7 +10,13 @@ const Button = ({
 	numberBlockTask,
 	veiwMenu,
 	setVeiwMenu,
+	inputDescription,
+	titleId,
+	numberTaskForMap,
+	valueInput,
 }) => {
+	let { arrayTask, setArrayTask } = useContext(arrayTaskContext);
+
 	const buttonBacklog = () => {
 		return (
 			<button className={styles.buttonAdd} onClick={() => setVeiwInput(true)}>
@@ -50,6 +58,33 @@ const Button = ({
 		);
 	};
 
+	const buttonAddDescription = () => {
+		localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
+
+		return (
+			<button
+				className={styles.buttonAdd}
+				onClick={() => {
+					setArrayTask({
+						...arrayTask,
+						[numberTaskForMap]: arrayTask[numberTaskForMap].map(task => {
+							if (task.id === titleId(arrayTask[numberTaskForMap])) {
+								return {
+									...task,
+									descriptions: valueInput,
+								};
+							} else {
+								return task;
+							}
+						}),
+					});
+				}}
+			>
+				{children}
+			</button>
+		);
+	};
+
 	return (
 		<div>
 			{!veiwInput ? (
@@ -70,11 +105,14 @@ const Button = ({
 					onClick={() => {
 						setVeiwInput(false);
 						addNewTask();
+						localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
 					}}
 				>
 					{children}
 				</button>
 			)}
+
+			{inputDescription ? buttonAddDescription() : <></>}
 		</div>
 	);
 };

@@ -3,7 +3,6 @@
 
 .work {
 	display: grid;
-	// grid-template-rows: auto 85vh auto;
 	grid-template-columns: repeat(4, 0.25fr);
 	gap: 25px;
 	overflow: hidden;

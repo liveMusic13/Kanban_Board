@@ -2,6 +2,7 @@ import BlockTask from '../../block-task/BlockTask';
 import Footer from '../../footer/Footer';
 import Header from '../../header/Header';
 import WorkingSpace from '../../working-space/WorkingSpace';
+import styles from './Home.module.scss';
 
 const Home = () => {
 	const arrayBlockTask = [
@@ -24,7 +25,7 @@ const Home = () => {
 	];
 
 	return (
-		<div>
+		<div className={styles.body}>
 			<Header>Awesome Kanban Board</Header>
 			<WorkingSpace>
 				{arrayBlockTask.map((blockTask, index) => {

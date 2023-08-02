@@ -6,6 +6,12 @@ const MenuTask = ({ numberBlockTask, veiwMenu, setVeiwMenu }) => {
 	let { arrayTask, setArrayTask } = useContext(arrayTaskContext);
 	const generateId = useContext(generateIdContext);
 
+	const saveToLocalStorage = () => {
+		// Преобразуем массив в строку перед сохранением
+		const serializedArrayTask = JSON.stringify(arrayTask);
+		localStorage.setItem('arrayTask', serializedArrayTask);
+	};
+
 	const numberTaskForMap =
 		numberBlockTask - 1 === 0
 			? 'backlog'
@@ -50,9 +56,9 @@ const MenuTask = ({ numberBlockTask, veiwMenu, setVeiwMenu }) => {
 										task => task.id !== taskBacklog.id
 									),
 								}));
-
+								saveToLocalStorage();
+								console.log('ok');
 								setVeiwMenu(!veiwMenu);
-								localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
 							}}
 						>
 							{taskBacklog.title}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/global.scss';
 import {
@@ -56,7 +56,14 @@ const Main = () => {
 	const [numberWindowBlockTask, setNumberWindowBlockTask] = useState(null);
 	const [valueInput, setValueInput] = useState('');
 
-	// setArrayTask(localStorage.getItem('arrayTask'));
+	useEffect(() => {
+		const storedArrayTask = localStorage.getItem('arrayTask');
+		if (storedArrayTask) {
+			// Парсим строку из локального хранилища в объект
+			const parsedArrayTask = JSON.parse(storedArrayTask);
+			setArrayTask(parsedArrayTask);
+		}
+	}, []);
 
 	return (
 		<div>

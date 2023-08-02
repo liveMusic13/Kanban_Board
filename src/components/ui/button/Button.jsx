@@ -17,6 +17,12 @@ const Button = ({
 	let { arrayTask, setArrayTask } = useContext(arrayTaskContext);
 	let { valueInput, setValueInput } = useContext(valueInputContext);
 
+	const saveToLocalStorage = () => {
+		// Преобразуем массив в строку перед сохранением
+		const serializedArrayTask = JSON.stringify(arrayTask);
+		localStorage.setItem('arrayTask', serializedArrayTask);
+	};
+
 	const buttonBacklog = () => {
 		return (
 			<button
@@ -35,7 +41,10 @@ const Button = ({
 		return (
 			<button
 				className={styles.buttonAdd}
-				onClick={() => setVeiwMenu(!veiwMenu)}
+				onClick={() => {
+					saveToLocalStorage();
+					setVeiwMenu(!veiwMenu);
+				}}
 			>
 				{children}
 			</button>
@@ -46,7 +55,10 @@ const Button = ({
 		return (
 			<button
 				className={styles.buttonAdd}
-				onClick={() => setVeiwMenu(!veiwMenu)}
+				onClick={() => {
+					saveToLocalStorage();
+					setVeiwMenu(!veiwMenu);
+				}}
 			>
 				{children}
 			</button>
@@ -57,7 +69,10 @@ const Button = ({
 		return (
 			<button
 				className={styles.buttonAdd}
-				onClick={() => setVeiwMenu(!veiwMenu)}
+				onClick={() => {
+					saveToLocalStorage();
+					setVeiwMenu(!veiwMenu);
+				}}
 			>
 				{children}
 			</button>
@@ -65,8 +80,6 @@ const Button = ({
 	};
 
 	const buttonAddDescription = () => {
-		localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
-
 		return (
 			<button
 				className={styles.buttonAdd}
@@ -84,6 +97,7 @@ const Button = ({
 							}
 						}),
 					});
+					saveToLocalStorage();
 				}}
 			>
 				{children}
@@ -111,7 +125,7 @@ const Button = ({
 					onClick={() => {
 						setVeiwInput(false);
 						addNewTask();
-						localStorage.setItem('arrayTask', JSON.stringify(arrayTask));
+						saveToLocalStorage();
 					}}
 				>
 					{children}

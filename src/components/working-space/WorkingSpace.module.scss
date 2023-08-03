@@ -5,7 +5,6 @@
 	display: grid;
 	grid-template-columns: repeat(4, 0.25fr);
 	gap: 25px;
-	overflow: hidden;
 	background-color: $backKanbanBlueLight;
 	padding: 20px;
 }

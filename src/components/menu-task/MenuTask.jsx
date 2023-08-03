@@ -57,7 +57,6 @@ const MenuTask = ({ numberBlockTask, veiwMenu, setVeiwMenu }) => {
 									),
 								}));
 								saveToLocalStorage();
-								console.log('ok');
 								setVeiwMenu(!veiwMenu);
 							}}
 						>
